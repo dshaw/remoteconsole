@@ -38,9 +38,13 @@ var socket = io.listen(server);
 socket.on('connection', function(client){
   console.log("New client connected.");
   client.on('message', function(message){
-    var msg = JSON.parse(message);
-    if ("log" in msg) {
-      console.log(msg.log);
+    try {
+      var msg = JSON.parse(message);
+      if ("log" in msg) {
+        console.log(msg.log);
+      }
+    } catch(e) {
+      console.warn(e);
     }
   });
   client.on('disconnect', function(){

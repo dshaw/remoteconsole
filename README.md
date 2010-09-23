@@ -2,7 +2,7 @@ Remote Console
 
 # Objective #
 
-Enable logging on devices that don't have access to console.log. 
+Enable logging on devices that don't have access to console.log.
 
 # Setup #
 

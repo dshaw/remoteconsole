@@ -26,10 +26,14 @@
       console.log( args );
     }
     if(this.socket){
+      var message = '';
       try {
-        socket.send(JSON.stringify({ log : args }));
+        message = JSON.stringify({ log : args });
       } catch(e) {
-        // can't do anything with non-serializable data.
+        message = JSON.stringify({ log : args.toString() });
+      }
+      if (message.length) {
+        socket.send(message);
       }
     }
   };
