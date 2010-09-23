@@ -1,0 +1,19 @@
+{
+  "name":"remoteconsole",
+  "version":"0.1.0",
+  "description":"Proxy console.log via Paul Irish's log() to the server.",
+  "homepage":"http://github.com/dshaw/remoteconsole",
+  "author": {
+    "name":"Daniel D. Shaw",
+    "email":"daniel.shaw@dshaw.com",
+    "url":"http://dshaw.com/"
+  },
+  "repository":{
+    "type":"git",
+    "url":"http://github.com/dshaw/remoteconsole.git"
+  },
+  "dependencies":{
+    "node-static":"",
+    "socket.io":""
+  }
+}

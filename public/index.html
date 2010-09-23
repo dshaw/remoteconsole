@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+  <meta charset=utf-8>
+  <title>Hello, Remote Console</title>
+  <style>
+    body {
+      margin: 1em; font-family: sans-serif;
+      background-color: black; color: white;
+      text-align: center
+    }
+    a { color: #0084B4 }
+  </style>
+</head>
+<body>
+  <h1>Remote Console</h1>
+  <p>Open console and use log() instead of console.log().</p>
+  <p>by <a href="http://twitter.com/dshaw">@dshaw</a></p>
+
+  <script type="text/javascript" src="js/socket.io.js"></script>
+  <script type="text/javascript" src="js/rc-client.js"></script>
+  <script>
+    (function() {
+      log('test');
+      log({ testy: 'testtest' });
+      log({ tested: 'best' });
+    })();
+  </script>
+</body>
+</html>
