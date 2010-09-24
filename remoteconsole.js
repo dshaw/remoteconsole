@@ -33,7 +33,9 @@ server.listen(port);
 console.log('Server listening on port :' + port);
 
 
-var socket = io.listen(server);
+var socket = io.listen(server,
+    { transports: ['websocket', 'server-events',
+      'htmlfile', 'xhr-multipart', 'xhr-polling']});
 
 socket.on('connection', function(client){
   console.log("New client connected.");

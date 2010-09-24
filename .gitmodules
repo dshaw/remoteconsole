@@ -1,0 +1,3 @@
+[submodule "public/io"]
+	path = public/io
+	url = http://github.com/LearnBoost/Socket.IO.git

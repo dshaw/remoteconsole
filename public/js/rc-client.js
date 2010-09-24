@@ -26,16 +26,50 @@
       console.log( args );
     }
     if(this.socket){
-      var message = '';
-      try {
-        message = JSON.stringify({ log : args });
-      } catch(e) {
-        message = JSON.stringify({ log : args.toString() });
-      }
+      var message = stringifyLog(args);
       if (message.length) {
         socket.send(message);
+        if (this.visualizer) {
+          visualizer.innerHTML += '<li>'+message+'</li>';
+        }
       }
     }
   };
+
+  // from fuse.js
+  function isPrimitive(value) {
+    var type = typeof value;
+    return value == null || type == 'boolean' || type == 'number' || type == 'string';
+  }
+
+  function shallowCopy(obj) {
+    if (isPrimitive(obj)) {
+      return obj;
+    }
+
+    var copy = {};
+    for (var p in obj) {
+      if (isPrimitive(obj[p])) {
+        copy[p] = obj[p];
+      }
+    }
+    return copy;
+  }
+
+  function stringifyLog(args) {
+    var message = '';
+    try {
+        message = JSON.stringify({ log : args });
+    } catch(e) {
+      if(console && console.error){
+        console.error( e );
+      }
+      for (var i=0, len=args.length; i<len; i++) {
+        args[i] = shallowCopy(args[i]);
+      }
+      message = JSON.stringify({ log : args });
+    }
+    return message;
+  }
 
 })();

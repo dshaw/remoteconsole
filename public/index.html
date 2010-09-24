@@ -9,20 +9,37 @@
       text-align: center
     }
     a { color: #0084B4 }
+    ol { margin: 0; padding: 0; }
+    li { list-style: none }
   </style>
+  <script src="js/json.js"></script>
+  <script src="io/socket.io.js"></script>
 </head>
 <body>
   <h1>Remote Console</h1>
   <p>Open console and use log() instead of console.log().</p>
   <p>by <a href="http://twitter.com/dshaw">@dshaw</a></p>
+  <ol id=visualizer></ol>
 
-  <script type="text/javascript" src="js/socket.io.js"></script>
-  <script type="text/javascript" src="js/rc-client.js"></script>
+
+  <script> var visualizer = document.getElementById('visualizer'); </script>
+  <script src="js/rc-client.js"></script>
   <script>
     (function() {
       log('test');
       log({ testy: 'testtest' });
       log({ tested: 'best' });
+
+      if (document.addEventListener) {
+        document.addEventListener('click', eventLogger, false);
+        document.addEventListener('touchstart', eventLogger, false);
+      } else if (document.attachEvent) {
+        document.attachEvent('onclick', eventLogger);
+      }
+
+      function eventLogger(event) {
+        log(event);
+      }
     })();
   </script>
 </body>
