@@ -9,7 +9,9 @@
 var http        = require('http'),
     // npm
     static      = require('node-static'),
-    io          = require('socket.io');
+    // vendor
+    // Socket.IO needs to be > v0.5.3
+    io          = require('./vendor/socket.io');
 
 
 /*-----------------------------------------------
@@ -33,9 +35,8 @@ server.listen(port);
 console.log('Server listening on port :' + port);
 
 
-var socket = io.listen(server,
-    { transports: ['websocket', 'server-events',
-      'htmlfile', 'xhr-multipart', 'xhr-polling']});
+var socket = io.listen(server, { transports: ['websocket',
+    'htmlfile', 'xhr-multipart', 'xhr-polling', 'jsonp-polling'] });
 
 socket.on('connection', function(client){
   console.log("New client connected.");
